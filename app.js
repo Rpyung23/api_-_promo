@@ -14,6 +14,6 @@ app.use(user)
 app.use(client)
 app.use(busniess)
 
-app.listen(process.env.port,()=>{
-    console.log(`SERVER API `+process.env.port)
+app.listen(process.env.PORT,()=>{
+    console.log(`SERVER API ${process.env.PORT}`)
 })
