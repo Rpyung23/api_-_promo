@@ -5,7 +5,7 @@ class UserModel
     {
         try {
             var conn  = await connDB().promise()
-            var sql = "select U.email_usuario,U.nombre_usuario,U.foto_usuario from usuario as U " +
+            var sql = "select U.email_usuario as email,U.nombre_usuario as name,U.foto_usuario as foto from usuario as U " +
                 "where U.email_usuario = '"+user+"' and U.pass_usuario = MD5('"+pass+"') and activo = 1"
             var data = await conn.query(sql)
             await conn.end()

@@ -22,7 +22,7 @@ class ClientModel
     {
         try {
             var conn = connDB().promise()
-            var sql = "select C.uid_cliente,C.name_cliente,C.foto_cliente from cliente as C " +
+            var sql = "select C.uid_cliente as email,C.name_cliente as name,C.foto_cliente as foto from cliente as C " +
                 "where C.uid_cliente = '"+user+"' and C.pass_cliente = MD5('"+pass+"') and C.activo = 1"
             var data = await conn.query(sql)
             await conn.end()
