@@ -18,6 +18,23 @@ class CuponModel
             return {estado:false,msm:e.toString()}
         }
     }
+
+    static async readAllCuponModel(email)
+    {
+        try {
+            var conn = await connDB().promise()
+            var sql = "select C.code_cupon,C.nombre_cupon,C.porcetaje_descuento," +
+                "convert(date(C.fecha_expiracion),char(250)) fecha_expiracion,C.cant_cupon," +
+                "C.foto_cupon from cupon as C inner join usuario_negocio as NU on NU.fk_ruc_negocio = C.fk_ruc_negocio " +
+                "where C.estado = 1 and NU.fk_email_usuario = '"+email+"' order by C.fecha_creacion_cupon desc"
+            var data = await conn.query(sql)
+            await conn.end()
+            return data[0]
+        }catch (e) {
+            console.log(e)
+            return []
+        }
+    }
 }
 
 module.exports = CuponModel

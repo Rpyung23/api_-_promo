@@ -20,5 +20,25 @@ app.post("/create_cupon",async function(req,res)
     }
 })
 
+app.get("/read_all_cupon",async function(req,res)
+{
+    try {
+        var data = await CuponController.readAllCuponController(req.body.email)
+
+        res.status(200).json({
+            status_code : data.length > 0 ? 200 : 300,
+            datos: data.length > 0 ? data : [],
+            msm : data.length > 0 ? 'CUPONES CONSULTADOS CON EXITO' : 'NO EXISTEN CUPONES DISPONIBLES'
+        })
+
+    }catch (e) {
+        res.status(200).json({
+            status_code : 400,
+            datos: [],
+            msm : e.toString()
+        })
+    }
+})
+
 
 module.exports = app
