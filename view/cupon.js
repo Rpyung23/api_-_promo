@@ -20,7 +20,7 @@ app.post("/create_cupon",async function(req,res)
     }
 })
 
-app.get("/read_all_cupon",async function(req,res)
+app.post("/read_all_cupon",async function(req,res)
 {
     try {
         var data = await CuponController.readAllCuponController(req.body.email)
