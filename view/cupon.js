@@ -41,7 +41,7 @@ app.post("/read_all_cupon",async function(req,res)
 })
 
 
-app.post("/update_cupon",async function(req,res)
+app.put("/update_cupon",async function(req,res)
 {
     try {
         var data = await CuponController.updateCuponController(req.body.code_cupon,
