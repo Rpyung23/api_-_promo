@@ -41,4 +41,24 @@ app.post("/read_all_cupon",async function(req,res)
 })
 
 
+app.post("/update_cupon",async function(req,res)
+{
+    try {
+        var data = await CuponController.updateCuponController(req.body.code_cupon,
+            req.body.nombre_cupon, req.body.porcetaje_descuento,
+            req.body.fecha_expiracion, req.body.cant_cupon)
+
+        res.status(200).json({
+            status_code : data.estado ? 200 : 400,
+            msm : data.estado ? "CUPON ACTUALIZADO CON EXITO" : data.msm
+        })
+    }catch (e) {
+        res.status(200).json({
+            status_code : 400,
+            msm : e.toString()
+        })
+    }
+})
+
+
 module.exports = app

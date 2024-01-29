@@ -35,6 +35,24 @@ class CuponModel
             return []
         }
     }
+
+    static async updateCuponModel(code_cupon,nombre_cupon, porcetaje_descuento,
+                                  fecha_expiracion, cant_cupon)
+    {
+        try {
+            var conn = await connDB().promise()
+            var sql = "update cupon set nombre_cupon = '"+nombre_cupon+"', porcetaje_descuento = "+porcetaje_descuento+"," +
+                "fecha_expiracion = '"+fecha_expiracion+"', cant_cupon = "+cant_cupon+" where code_cupon = "+code_cupon
+            await conn.query(sql)
+            await conn.end()
+            return {estado:true,msm:"OK"}
+        }catch (e) {
+            console.log(e)
+            return {estado:false,msm:e.toString()}
+        }
+    }
+
+
 }
 
 module.exports = CuponModel
