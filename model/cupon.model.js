@@ -2,6 +2,22 @@ const connDB = require("../config/conn");
 
 class CuponModel
 {
+
+   static async readAllCuponClientModel()
+    {
+        try {
+            var conn = await connDB().promise()
+            var sql = "select C.code_cupon,C.nombre_cupon,convert(date(C.fecha_expiracion),char(250)) as " +
+                "fecha_expiracion,C.foto_cupon from cupon as C where C.estado = 1 and C.disponible_cupon > 0 " +
+                "and date(now()) <= date(C.fecha_expiracion);"
+            var data = await conn.query(sql)
+            await conn.end()
+            return data[0]
+        }catch (e) {
+            console.log(e)
+            return []
+        }
+    }
     static async createCuponModel(email,name,porcent,f_exp,cant,foto)
     {
         try{

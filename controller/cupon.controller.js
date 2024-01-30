@@ -1,6 +1,10 @@
 const CuponModel = require("../model/cupon.model")
 class CuponController
 {
+    static async readAllCuponClientController()
+    {
+        return await CuponModel.readAllCuponClientModel();
+    }
     static async readAllCuponController(email){
         return await CuponModel.readAllCuponModel(email)
     }
