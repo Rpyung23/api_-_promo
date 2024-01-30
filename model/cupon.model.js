@@ -43,6 +43,7 @@ class CuponModel
             var conn = await connDB().promise()
             var sql = "update cupon set nombre_cupon = '"+nombre_cupon+"', porcetaje_descuento = "+porcetaje_descuento+"," +
                 "fecha_expiracion = '"+fecha_expiracion+"', cant_cupon = "+cant_cupon+" where code_cupon = "+code_cupon
+            console.log(sql)
             await conn.query(sql)
             await conn.end()
             return {estado:true,msm:"OK"}
