@@ -69,6 +69,30 @@ class CuponModel
         }
     }
 
+    static async consumirCuponModel(user,code_cupon)
+    {
+        try {
+            var conn = connDB().promise()
+            var sql = "call checkValidaCuponUserOcupado('"+user+"',"+code_cupon+")";
+            var sql_2 = "insert into cupon_cliente(fk_code_cupon, fk_uid_cliente) " +
+                "VALUES ("+code_cupon+",'"+user+"')"
+            console.log(sql)
+            console.log(sql_2)
+            var dataProcedure = await conn.query(sql)
+
+            if(dataProcedure[0][0][0].respuesta == 200)
+            {
+                await conn.query(sql_2)
+                return {code:200,msm:"CUPON OCUPADO CON EXITO"}
+            }
+            await conn.end()
+            return {code:300,msm:"CUPON YA ESTA OCUPADO"}
+        }catch (e) {
+            console.log(e.toString())
+            return {code:400,msm:e.toString()}
+        }
+    }
+
 
 }
 

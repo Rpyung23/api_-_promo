@@ -82,4 +82,21 @@ app.put("/update_cupon",async function(req,res)
 })
 
 
+app.put("/consumir_cupon",async function(req,res)
+{
+    var data = await CuponController.consumirCuponController(req.body.user,req.body.cupon)
+    try {
+        res.status(200).json({
+            status_code : data.code,
+            msm: data.msm
+        })
+    }catch (e) {
+        res.status(200).json({
+            status_code : 400,
+            msm: e.toString()
+        })
+    }
+})
+
+
 module.exports = app

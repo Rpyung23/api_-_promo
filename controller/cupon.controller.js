@@ -1,6 +1,11 @@
 const CuponModel = require("../model/cupon.model")
 class CuponController
 {
+
+    static async consumirCuponController(user,code_cupon)
+    {
+        return await CuponModel.consumirCuponModel(user,code_cupon)
+    }
     static async readAllCuponClientController()
     {
         return await CuponModel.readAllCuponClientModel();
