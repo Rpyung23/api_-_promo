@@ -15,6 +15,10 @@ class UserController
     {
         return await UserModel.assignUsuarioBusinessModel(user,business)
     }
+
+    static async readProfileUsuarioController(email){
+        return await UserModel.readProfileUsuarioModel(email);
+    }
 }
 
 module.exports = UserController

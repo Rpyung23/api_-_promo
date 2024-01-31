@@ -55,4 +55,24 @@ app.post("/assign_user_business",async function (req,res)
     }
 })
 
+
+app.post("/profile_usuario",async function(req,res)
+{
+    try {
+        var data = await UserController.readProfileUsuarioController(req.body.email_client)
+
+        res.status(200).json({
+            status_code : data == null ? 300 : 200,
+            msm : data ? "CLiente consultado con éxito" : "Error al consultar cliente",
+            datos: data == null ? null : data
+        })
+    }catch (e) {
+        res.status(200).json({
+            status_code : 400,
+            msm : e.toString(),
+            datos:null
+        })
+    }
+})
+
 module.exports = app
