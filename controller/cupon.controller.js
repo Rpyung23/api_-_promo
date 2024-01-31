@@ -13,9 +13,9 @@ class CuponController
     static async readAllCuponController(email){
         return await CuponModel.readAllCuponModel(email)
     }
-    static async createCuponController(email,name,porcent,f_exp,cant,foto)
+    static async createCuponController(email,name,porcent,f_exp,cant,foto,categoria)
     {
-       return await CuponModel.createCuponModel(email,name,porcent,f_exp,cant,foto)
+       return await CuponModel.createCuponModel(email,name,porcent,f_exp,cant,foto,categoria)
     }
 
     static async updateCuponController(code_cupon,nombre_cupon, porcetaje_descuento,

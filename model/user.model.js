@@ -1,6 +1,21 @@
 const connDB = require("../config/conn")
 class UserModel
 {
+
+    static async readProfileUsuarioModel(email)
+    {
+        try {
+            var sql = "select U.nombre_usuario name_cliente,U.foto_usuario foto_cliente," +
+                "U.email_usuario uid_cliente from usuario as U where U.email_usuario = '"+email+"'"
+            var conn = await connDB().promise()
+            var data = await conn.query(sql)
+            await conn.end()
+            return data[0][0]
+        }catch (e) {
+            console.log(e)
+            return null
+        }
+    }
     static async loginUsuarioModel(user,pass)
     {
         try {

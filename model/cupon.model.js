@@ -18,7 +18,7 @@ class CuponModel
             return []
         }
     }
-    static async createCuponModel(email,name,porcent,f_exp,cant,foto)
+    static async createCuponModel(email,name,porcent,f_exp,cant,foto,categoria)
     {
         try{
             var conn = await connDB().promise()

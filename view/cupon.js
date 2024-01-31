@@ -6,7 +6,7 @@ app.post("/create_cupon",async function(req,res)
     try {
         var data = await CuponController.createCuponController(req.body.email,
             req.body.name,req.body.porcent,req.body.f_exp,req.body.cant,
-            req.body.foto)
+            req.body.foto,req.body.categoria)
 
         res.status(200).json({
             status_code : data.estado ? 200 : 400,
