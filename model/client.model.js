@@ -33,6 +33,20 @@ class ClientModel
         return null
     }
 
+    static async readProfileClientModel(email)
+    {
+        try {
+            var sql = "select C.name_cliente,C.foto_cliente,C.uid_cliente from cliente as C where C.uid_cliente = '"+email+"'"
+            var conn = await connDB().promise()
+            var data = await conn.query(sql)
+            await conn.end()
+            return data[0][0]
+        }catch (e) {
+            console.log(e)
+            return null
+        }
+    }
+
 
 }
 

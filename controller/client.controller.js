@@ -12,6 +12,10 @@ class ClientController
     {
         return await ClientModel.loginClientModel(user, pass)
     }
+
+    static async readProfileClientController(email){
+        return await ClientModel.readProfileClientModel(email)
+    }
 }
 
 module.exports = ClientController

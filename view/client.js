@@ -2,6 +2,26 @@ const express = require("express")
 const app = express()
 const ClientController = require("../controller/client.controller")
 
+
+app.post("/profile_client",async function(req,res)
+{
+    try {
+        var data = await ClientController.readProfileClientController(req.body.email_client)
+
+        res.status(200).json({
+            status_code : data == null ? 300 : 200,
+            msm : data ? "CLiente consultado con éxito" : "Error al consultar cliente",
+            datos: data == null ? null : data
+        })
+    }catch (e) {
+        res.status(200).json({
+            status_code : 400,
+            msm : e.toString(),
+            datos:null
+        })
+    }
+})
+
 app.post("/create_client",async function(req,res)
 {
     try {
