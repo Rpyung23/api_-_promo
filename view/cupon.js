@@ -99,4 +99,34 @@ app.put("/consumir_cupon",async function(req,res)
 })
 
 
+app.post("/static",async function(req,res)
+{
+    try {
+        var data1 = await CuponController.staticCuponVendidoController(req.body.email)
+        var data2 = await CuponController.staticCuponOcupadoController(req.body.email)
+
+        res.status(200).json({
+            status_code : 200,
+            msm : "OK",
+            cant_cupon_vn: data1.cant_cupon_vn != undefined && data1.cant_cupon_vn != null ? parseInt(data1.cant_cupon_vn) : 0,
+            disponible_cupon_vn: data1.disponible_cupon_vn != undefined && data1.disponible_cupon_vn != null ? parseInt(data1.disponible_cupon_vn) : 0,
+            tot_vn: data1.tot_vn != undefined && data1.tot_vn != null ? parseInt(data1.tot_vn) : 0,
+            cant_cupon_ocp: data2.cant_cupon_ocp != undefined && data2.cant_cupon_ocp != null ? parseInt(data2.cant_cupon_ocp) : 0,
+            disponible_cupon_ocp: data2.disponible_cupon_ocp != undefined && data2.disponible_cupon_ocp != null ? parseInt(data2.disponible_cupon_ocp) : 0,
+            tot_ocp: data2.tot_ocp != undefined && data2.tot_ocp != null ? parseInt(data2.tot_ocp) : 0
+        })
+    }catch (e) {
+        res.status(200).json({
+            status_code : 400,
+            msm : e.toString(),
+            cant_cupon_vn: 0,
+            disponible_cupon_vn: 0,
+            tot_vn: 0,
+            cant_cupon_ocp: 0,
+            disponible_cupon_ocp: 0,
+            tot_ocp: 0
+        })
+    }
+})
+
 module.exports = app

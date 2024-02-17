@@ -23,6 +23,14 @@ class CuponController
         return await  CuponModel.updateCuponModel(code_cupon,nombre_cupon, porcetaje_descuento,
             fecha_expiracion, cant_cupon)
     }
+
+    static async staticCuponVendidoController(email){
+        return await CuponModel.staticCuponModelVendido(email)
+    }
+
+    static async staticCuponOcupadoController(email){
+        return await CuponModel.staticCuponModelOcupado(email)
+    }
 }
 
 module.exports = CuponController
