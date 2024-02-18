@@ -115,11 +115,11 @@ app.post("/static",async function(req,res)
         res.status(200).json({
             status_code : 200,
             msm : "OK",
-            cant_cupon_vn: parseFloat(Number((data1.tot_vn/data1.cant_cupon_vn)*100).toFixed(2)),
-            disponible_cupon_vn: parseFloat(Number((data1.tot_vn/data1.disponible_cupon_vn)*100).toFixed(2)),
+            cant_cupon_vn: parseFloat(Number((data1.cant_cupon_vn/data1.tot_vn)*100).toFixed(2)),
+            disponible_cupon_vn: parseFloat(Number((data1.disponible_cupon_vn/data1.tot_vn)*100).toFixed(2)),
             tot_vn: data1.tot_vn,
-            cant_cupon_ocp: parseFloat(Number((data2.tot_ocp/data2.cant_cupon_ocp)*100).toFixed(2)),
-            disponible_cupon_ocp: parseFloat(Number((data2.tot_ocp/data2.disponible_cupon_ocp)*100).toFixed(2)),
+            cant_cupon_ocp: parseFloat(Number((data2.cant_cupon_ocp/data2.tot_ocp)*100).toFixed(2)),
+            disponible_cupon_ocp: parseFloat(Number((data2.disponible_cupon_ocp/data2.tot_ocp)*100).toFixed(2)),
             tot_ocp: data2.tot_ocp
         })
     }catch (e) {
