@@ -99,7 +99,7 @@ class CuponModel
         try {
             var conn = await connDB().promise()
             var sql = "select table1.*,(table1.cant_cupon_vn+table1.disponible_cupon_vn) tot_vn from " +
-                "(select sum(C.cant_cupon) cant_cupon_vn,sum(C.disponible_cupon) disponible_cupon_vn " +
+                "(select sum(C.cant_cupon - disponible_cupon) cant_cupon_vn,sum(C.disponible_cupon) disponible_cupon_vn " +
                 "from cupon as C where date(now()) > date(C.fecha_expiracion) and " +
                 "C.fk_ruc_negocio in (select UN.fk_ruc_negocio from usuario_negocio as UN " +
                 "where UN.fk_email_usuario = '"+email+"')) as table1;"
@@ -116,7 +116,7 @@ class CuponModel
         try {
             var conn = await connDB().promise()
             var sql = "select table1.*,(table1.cant_cupon_ocp+table1.disponible_cupon_ocp) tot_ocp from " +
-                "(select sum(C.cant_cupon) cant_cupon_ocp,sum(C.disponible_cupon) disponible_cupon_ocp " +
+                "(select sum(C.cant_cupon - disponible_cupon) cant_cupon_ocp,sum(C.disponible_cupon) disponible_cupon_ocp " +
                 "from cupon as C where date(now()) <= date(C.fecha_expiracion) and " +
                 "C.fk_ruc_negocio in (select UN.fk_ruc_negocio from usuario_negocio as UN " +
                 "where UN.fk_email_usuario = '"+email+"')) as table1;"
