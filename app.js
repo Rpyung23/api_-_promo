@@ -11,11 +11,13 @@ const client = require("./view/client")
 const busniess = require("./view/busniess")
 const store = require("./view/store")
 const cupon = require("./view/cupon")
+const categorie = require("./view/categorie")
 app.use(user)
 app.use(client)
 app.use(busniess)
 app.use(store)
 app.use(cupon)
+app.use(categorie)
 
 app.listen(process.env.PORT,()=>{
     console.log(`SERVER API ${process.env.PORT}`)
