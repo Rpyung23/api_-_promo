@@ -51,11 +51,11 @@ class CuponModel
     }
 
     static async updateCuponModel(code_cupon,nombre_cupon, porcetaje_descuento,
-                                  fecha_expiracion, cant_cupon)
+                                  fecha_expiracion, cant_cupon,categoria)
     {
         try {
             var conn = await connDB().promise()
-            var sql = "update cupon set nombre_cupon = '"+nombre_cupon+"', porcetaje_descuento = "+porcetaje_descuento+"," +
+            var sql = "update cupon set id_tipo_categoria = '"+categoria+"', nombre_cupon = '"+nombre_cupon+"', porcetaje_descuento = "+porcetaje_descuento+"," +
                 "fecha_expiracion = '"+fecha_expiracion+"', cant_cupon = "+cant_cupon+" where code_cupon = "+code_cupon
             console.log(sql)
             await conn.query(sql)

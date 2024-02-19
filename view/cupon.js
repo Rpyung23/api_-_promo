@@ -67,7 +67,7 @@ app.put("/update_cupon",async function(req,res)
     try {
         var data = await CuponController.updateCuponController(req.body.code_cupon,
             req.body.nombre_cupon, req.body.porcetaje_descuento,
-            req.body.fecha_expiracion, req.body.cant_cupon)
+            req.body.fecha_expiracion, req.body.cant_cupon,req.body.categoria)
 
         res.status(200).json({
             status_code : data.estado ? 200 : 400,

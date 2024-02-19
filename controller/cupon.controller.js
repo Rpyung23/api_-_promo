@@ -19,9 +19,9 @@ class CuponController
     }
 
     static async updateCuponController(code_cupon,nombre_cupon, porcetaje_descuento,
-                                  fecha_expiracion, cant_cupon){
+                                  fecha_expiracion, cant_cupon,categoria){
         return await  CuponModel.updateCuponModel(code_cupon,nombre_cupon, porcetaje_descuento,
-            fecha_expiracion, cant_cupon)
+            fecha_expiracion, cant_cupon,categoria)
     }
 
     static async staticCuponVendidoController(email){
