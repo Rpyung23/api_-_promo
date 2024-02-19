@@ -24,8 +24,7 @@ class CuponModel
             var conn = await connDB().promise()
             var sql = "insert into cupon(fk_ruc_negocio, nombre_cupon, porcetaje_descuento," +
                 "fecha_creacion_cupon, fecha_expiracion, cant_cupon, disponible_cupon," +
-                "estado, foto_cupon) VALUES ((select UN.fk_ruc_negocio from usuario_negocio as UN " +
-                "where UN.fk_email_usuario = '"+email+"'),'"+name+"',"+porcent+",date(now()),'"+f_exp+"',"+cant+","+cant+",1,'"+foto+"')"
+                "estado, foto_cupon,id_tipo_categoria) VALUES ('"+email+"','"+name+"',"+porcent+",date(now()),'"+f_exp+"',"+cant+","+cant+",1,'"+foto+"',"+categoria+")"
             await conn.query(sql)
             await connDB().end()
             return {estado:true,msm:"ok"}
