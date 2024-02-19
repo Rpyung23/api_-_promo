@@ -22,7 +22,7 @@ class CuponModel
     {
         try{
             var conn = await connDB().promise()
-            var sql = "insert into cupon(fk_ruc_negocio, nombre_cupon, porcetaje_descuento," +
+            var sql = "insert into cupon(fk_email_user, nombre_cupon, porcetaje_descuento," +
                 "fecha_creacion_cupon, fecha_expiracion, cant_cupon, disponible_cupon," +
                 "estado, foto_cupon,id_tipo_categoria) VALUES ('"+email+"','"+name+"',"+porcent+",date(now()),'"+f_exp+"',"+cant+","+cant+",1,'"+foto+"',"+categoria+")"
             await conn.query(sql)
