@@ -1,5 +1,5 @@
-const UserModel = require("../model/user.model")
-class UserController
+const UserModel = require("../model/vendedor.model")
+class VendedorController
 {
     static async loginUserController(user,pass)
     {
@@ -21,4 +21,4 @@ class UserController
     }
 }
 
-module.exports = UserController
+module.exports = VendedorController

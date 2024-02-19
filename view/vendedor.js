@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 
-const UserController = require("../controller/user.controller")
+const UserController = require("../controller/vendedor.controller")
 
 app.post("/login_admin",async function (req,res)
 {
