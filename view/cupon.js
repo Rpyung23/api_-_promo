@@ -61,7 +61,7 @@ app.get("/read_all_client_cupon",async function(req,res)
     }
 })
 
-app.get("/read_all_client_category_cupon",async function(req,res)
+app.post("/read_all_client_category_cupon",async function(req,res)
 {
     try {
         var data = await CuponController.readAllCuponClientCategoryController(req.body.categoria)
