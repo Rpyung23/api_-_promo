@@ -41,8 +41,7 @@ class CuponModel
             var conn = await connDB().promise()
             var sql = "select C.code_cupon,C.nombre_cupon,C.porcetaje_descuento," +
                 "convert(date(C.fecha_expiracion),char(250)) fecha_expiracion,C.cant_cupon," +
-                "C.foto_cupon from cupon as C inner join usuario_negocio as NU on NU.fk_ruc_negocio = C.fk_ruc_negocio " +
-                "where C.estado = 1 and NU.fk_email_usuario = '"+email+"' order by C.fecha_creacion_cupon desc"
+                "C.foto_cupon from cupon as C where C.estado = 1 and C.fk_email_user = '"+email+"' order by C.fecha_creacion_cupon desc"
             var data = await conn.query(sql)
             await conn.end()
             return data[0]
@@ -101,8 +100,7 @@ class CuponModel
             var sql = "select table1.*,(table1.cant_cupon_vn+table1.disponible_cupon_vn) tot_vn from " +
                 "(select sum(C.cant_cupon - disponible_cupon) cant_cupon_vn,sum(C.disponible_cupon) disponible_cupon_vn " +
                 "from cupon as C where date(now()) > date(C.fecha_expiracion) and " +
-                "C.fk_ruc_negocio in (select UN.fk_ruc_negocio from usuario_negocio as UN " +
-                "where UN.fk_email_usuario = '"+email+"')) as table1;"
+                "C.fk_email_user = '"+email+"') as table1;"
             var data = await conn.query(sql)
             await conn.end()
             return data[0][0]
@@ -118,8 +116,7 @@ class CuponModel
             var sql = "select table1.*,(table1.cant_cupon_ocp+table1.disponible_cupon_ocp) tot_ocp from " +
                 "(select sum(C.cant_cupon - disponible_cupon) cant_cupon_ocp,sum(C.disponible_cupon) disponible_cupon_ocp " +
                 "from cupon as C where date(now()) <= date(C.fecha_expiracion) and " +
-                "C.fk_ruc_negocio in (select UN.fk_ruc_negocio from usuario_negocio as UN " +
-                "where UN.fk_email_usuario = '"+email+"')) as table1;"
+                "C.fk_email_user = '"+email+"') as table1;"
             var data = await conn.query(sql)
             await conn.end()
             return data[0][0]
