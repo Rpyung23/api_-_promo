@@ -61,6 +61,26 @@ app.get("/read_all_client_cupon",async function(req,res)
     }
 })
 
+app.get("/read_all_client_category_cupon",async function(req,res)
+{
+    try {
+        var data = await CuponController.readAllCuponClientCategoryController(req.body.categoria)
+
+        res.status(200).json({
+            status_code : data.length > 0 ? 200 : 300,
+            datos: data.length > 0 ? data : [],
+            msm : data.length > 0 ? 'CUPONES CONSULTADOS CON EXITO' : 'NO EXISTEN CUPONES DISPONIBLES'
+        })
+
+    }catch (e) {
+        res.status(200).json({
+            status_code : 400,
+            datos: [],
+            msm : e.toString()
+        })
+    }
+})
+
 
 app.put("/update_cupon",async function(req,res)
 {
