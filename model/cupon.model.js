@@ -117,11 +117,12 @@ class CuponModel
                 "(select sum(C.cant_cupon - disponible_cupon) cant_cupon_vn,sum(C.disponible_cupon) disponible_cupon_vn " +
                 "from cupon as C where date(now()) > date(C.fecha_expiracion) and " +
                 "C.fk_email_user = '"+email+"') as table1;"
+            console.log(sql)
             var data = await conn.query(sql)
             await conn.end()
             if(data[0].length > 0){
-                data[0][0].disponible_cupon_vn = parseFloat(data[0][0].disponible_cupon_vn)
-                data[0][0].cant_cupon_vn = parseFloat(data[0][0].cant_cupon_vn)
+                data[0][0].disponible_cupon_vn = parseFloat(data[0][0].disponible_cupon_vn == null ? 0 : data[0][0].disponible_cupon_vn)
+                data[0][0].cant_cupon_vn = parseFloat(data[0][0].cant_cupon_vn  == null ? 0 : data[0][0].cant_cupon_vn)
             }
             return data[0][0]
         }catch (e) {
@@ -141,8 +142,8 @@ class CuponModel
             await conn.end()
 
             if(data[0].length > 0){
-                data[0][0].cant_cupon_ocp = parseFloat(data[0][0].cant_cupon_ocp)
-                data[0][0].disponible_cupon_ocp = parseFloat(data[0][0].disponible_cupon_ocp)
+                data[0][0].cant_cupon_ocp = parseFloat(data[0][0].cant_cupon_ocp == null ? 0 : data[0][0].cant_cupon_ocp)
+                data[0][0].disponible_cupon_ocp = parseFloat(data[0][0].disponible_cupon_ocp == null ? 0 : data[0][0].disponible_cupon_ocp)
             }
 
             return data[0][0]
