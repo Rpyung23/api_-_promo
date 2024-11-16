@@ -119,6 +119,10 @@ class CuponModel
                 "C.fk_email_user = '"+email+"') as table1;"
             var data = await conn.query(sql)
             await conn.end()
+            if(data[0].length > 0){
+                data[0][0].disponible_cupon_vn = parseFloat(data[0][0].disponible_cupon_vn)
+                data[0][0].cant_cupon_vn = parseFloat(data[0][0].cant_cupon_vn)
+            }
             return data[0][0]
         }catch (e) {
             return null
@@ -135,6 +139,12 @@ class CuponModel
                 "C.fk_email_user = '"+email+"') as table1;"
             var data = await conn.query(sql)
             await conn.end()
+
+            if(data[0].length > 0){
+                data[0][0].cant_cupon_ocp = parseFloat(data[0][0].cant_cupon_ocp)
+                data[0][0].disponible_cupon_ocp = parseFloat(data[0][0].disponible_cupon_ocp)
+            }
+
             return data[0][0]
         }catch (e) {
             return null
