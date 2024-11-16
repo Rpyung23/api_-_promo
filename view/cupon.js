@@ -111,6 +111,7 @@ app.put("/consumir_cupon",async function(req,res)
             msm: data.msm
         })
     }catch (e) {
+        console.log(e)
         res.status(200).json({
             status_code : 400,
             msm: e.toString()
