@@ -4,10 +4,10 @@ let connDB = () =>
 {
 
     return  mysql.createConnection({
-        host: "159.223.111.107",
+        host: "66.240.205.86",
         user: "root",
         database: "mas_promo",
-        password: "Pum@15001232023*",
+        password: "Pum@1500123",
         port: 3306
     });
 
